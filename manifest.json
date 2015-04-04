@@ -14,11 +14,17 @@
   "browser_action": {
     "default_icon": "128_icon.png",
     "default_title": "Save-All",
-    "default_popup": "popuptext.html"
+    "default_popup": "popup.html"
   },
 
   "permissions": [
     "activeTab",
     "downloads"
+  ],
+  "content_scripts":[
+  {
+    "matches": ["http://*/*", "https://*/*"],
+    "js": ["saveAll.js"]
+  }
   ]
 }
