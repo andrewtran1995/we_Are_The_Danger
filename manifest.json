@@ -1,0 +1,24 @@
+{
+  "manifest_version": 2,
+
+  "name": "Save-All",
+  "description": "An extension that saves the first image on the current web page.",
+  "version": "1.0",
+
+  "icons":{
+    "16": "16_icon.png",
+    "48": "48_icon.png",
+    "128": "128_icon.png"
+  },
+
+  "browser_action": {
+    "default_icon": "128_icon.png",
+    "default_title": "Save-All",
+    "default_popup": "popuptext.html"
+  },
+
+  "permissions": [
+    "activeTab",
+    "downloads"
+  ]
+}
