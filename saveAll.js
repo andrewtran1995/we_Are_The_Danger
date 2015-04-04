@@ -1,5 +1,6 @@
 // Called when user clicks on browser action.
 console.log("Testing.");
+console.log("Testing1.");
 
 console.log("Saving first image from " + tab.url);
 chrome.tabs.executeScript({
