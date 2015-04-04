@@ -22,8 +22,8 @@
     "downloads"
   ],
   "content_scripts":[
-   {
-     "matches": ["http://*/*"],
+  {
+    "matches": ["http://*/*", "https://*/*"],
     "js": ["saveAll.js"]
   }
   ]
