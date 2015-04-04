@@ -19,11 +19,15 @@
         max-width: 400px;
       }
 		</style>
-        <script type="text/javascript"> <!--src="saveAll.js" console.log("Please.")</script>
+        <script type="text/javascript" src="saveAll.js"></script>
 	 </head>
 	 <body>
-		<h1><b><font color= "red"> Action: </font></b></h1>
-		<h2> This will save the first image made available </h2>
+	<img src="48_icon.png" align="middle">
+	<br>
+	<h1><b><font color= "red"> Action: </font></b></h1>
+	<hr>
+	<h2> <font size="4"> This will save the first image made available </font></h2>
+
 	</body>
 		
 	</html>
