@@ -1,3 +1,4 @@
+chrome.browserAction.setPopup("popup.html");
 // Asynchronous function that determines what the tab of interest is.
 // If used as a parameter in another function, tab is properly found and called back.
 function getCurrentTab(callback){
@@ -34,6 +35,7 @@ document.addEventListener('DOMContentLoaded', function() {
         chrome.tabs.sendMessage(tab.id, "getDOM");
         imgUrl = tab.url;
         console.log("URL: " + imgUrl);
+        console.log("# of images: " + document.images.length);
         chrome.downloads.download({url: imgUrl}, function (id) {console.log("Downloaded ID: " + id)});
     });
     //console.log("URL OUTSIDE:" + imgUrl);
