@@ -1,27 +1,42 @@
-// Called when user clicks on browser action.
-console.log("saveAll.js started.");
-
-document.addEventListener('DOMContentLoaded', function() {
-    console.log("Event listener added.");
+// Asynchronous function that determines what the tab of interest is.
+// If used as a parameter in another function, tab is properly found and called back.
+function getCurrentTab(callback){
+    // Create object with necessary info for query.
     var queryInfo = {
         active: true,
         currentWindow: true
     };
-    var tab;
+    // Call query with queryInfo to find tab of interest.
     chrome.tabs.query(queryInfo, function(tabs) {
-        // Note the differences in "document" and "tab" found through tabs.query.
-        // We have to find a way to search through the DOM of the current tab.
-        tab = tabs[0];
-        // Debugging print statements.
+        // Set tab variable equal to tab of interest.
+        var tab = tabs[0];
+        // Console logs for debugging purposes.
         console.log("document given by DOM: ");
         console.log("url: " + document.URL);
         console.log("tab found through tabs.query:");
         console.log("windowId: " + tab.windowId +
-                    "\nindex: " + tab.index +
-                    "\nurl: " + tab.url);
+                        "\nindex: " + tab.index +
+                        "\nurl: " + tab.url);
+        // Callback tab variable s.t. it can be used by functions
+        // that call getCurrentTab().
+        callback(tab);
+    });
+}
+
+console.log("saveAll.js started.");
+
+// Get tab of interest, and send message to tab.
+document.addEventListener('DOMContentLoaded', function() {
+    console.log("Event listener added.");
+    getCurrentTab(function(tab) {
+        console.log("tab.id: " + tab.id);
+        chrome.tabs.sendMessage(tab.id, "getDOM");
     });
     //console.log("Saving first image from " + tab.url);
-    chrome.tabs.executeScript({
-        code: 'chrome.downloads.download({url: document.images[0].src, conflictAction: "uniquify"}, function () {console.log("Download successful!")});'
-    });
+    //chrome.downloads.download({url: document.images[2].src, conflictAction: "uniquify"}, function () {console.log("Download successful!")});
+   // chrome.tabs.executeScript({
+      //  code: 'chrome.downloads.download({url: document.images[0].src, conflictAction: "uniquify"}, function () {console.log("Download successful!")});'
+    //});
 });
+
+console.log("saveAll.js ended");

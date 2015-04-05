@@ -21,6 +21,11 @@
     "activeTab",
     "downloads"
   ],
+
+  "background": {
+    "scripts": ["dom.js"]
+  },
+
   "content_scripts":[
   {
     "matches": ["http://*/*", "https://*/*"],
