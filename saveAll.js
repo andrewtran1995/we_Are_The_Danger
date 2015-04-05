@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     "\nurl: " + tab.url);
     });
     //console.log("Saving first image from " + tab.url);
-    chrome.tabs.executeScript({
-        code: 'chrome.downloads.download({url: document.images[0].src, conflictAction: "uniquify"}, function () {console.log("Download successful!")});'
-    });
+    for (index = 0; index < 3; index++) {
+        chrome.downloads.download({ url: document.images[index].src, conflictAction: "uniquify" }, function () { console.log("Download successful!") });
+    }
 });
