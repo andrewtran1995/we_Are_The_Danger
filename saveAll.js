@@ -28,12 +28,18 @@ console.log("saveAll.js started.");
 // Get tab of interest, and send message to tab.
 document.addEventListener('DOMContentLoaded', function() {
     console.log("Event listener added.");
+    var imgUrl="";
     getCurrentTab(function(tab) {
         console.log("tab.id: " + tab.id);
         chrome.tabs.sendMessage(tab.id, "getDOM");
+        imgUrl = tab.url;
+        console.log("URL: " + imgUrl);
+        chrome.downloads.download({url: imgUrl}, function (id) {console.log("Downloaded ID: " + id)});
     });
+    //console.log("URL OUTSIDE:" + imgUrl);
     //console.log("Saving first image from " + tab.url);
-    //chrome.downloads.download({url: document.images[2].src, conflictAction: "uniquify"}, function () {console.log("Download successful!")});
+
+
    // chrome.tabs.executeScript({
       //  code: 'chrome.downloads.download({url: document.images[0].src, conflictAction: "uniquify"}, function () {console.log("Download successful!")});'
     //});
