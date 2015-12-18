@@ -2,7 +2,7 @@
   "manifest_version": 2,
 
   "name": "Save-All",
-  "description": "An extension that saves the entire current webpage. (Supposed to save all images on current webpage.)",
+  "description": "An extension that saves the first image on the current web page.",
   "version": "1.0",
 
   "icons":{
@@ -14,16 +14,20 @@
   "browser_action": {
     "default_icon": "128_icon.png",
     "default_title": "Save-All",
-    "default_popup": "popup window.html"
+    "default_popup": "popup.html"
   },
 
   "permissions": [
+    "debugger",
+    "tabs",
     "activeTab",
-    "downloads"
+    "downloads",
+    "http://*/*",
+    "https://*/*"
   ],
 
   "background": {
-    "scripts": ["dom.js"]
+    "scripts": ["eventPage.js"]
   },
 
   "content_scripts":[
@@ -32,4 +36,6 @@
     "js": ["saveAll.js"]
   }
   ]
+
+
 }

@@ -1,3 +1,7 @@
+console.log("saveAll.js started for " + document.URL);
+
+console.log("saveAll.js found " + document.images.length + " images!");
+
 // Asynchronous function that determines what the tab of interest is.
 // If used as a parameter in another function, tab is properly found and called back.
 function getCurrentTab(callback){
@@ -6,6 +10,7 @@ function getCurrentTab(callback){
         active: true,
         currentWindow: true
     };
+    console.log("Middle of getCurrentTab");
     // Call query with queryInfo to find tab of interest.
     chrome.tabs.query(queryInfo, function(tabs) {
         // Set tab variable equal to tab of interest.
@@ -23,18 +28,28 @@ function getCurrentTab(callback){
     });
 }
 
-console.log("saveAll.js started.");
-
 // Get tab of interest, and send message to tab.
-document.addEventListener('DOMContentLoaded', function() {
-    console.log("Event listener added.");
+console.log("Adding event listener.");
+// chrome.downloads.download;
+document.addEventListener("DOMContentLoaded", function() {
     var imgUrl="";
+    console.log("Middle of addEventListener");
     getCurrentTab(function(tab) {
-        console.log("tab.id: " + tab.id);
-        chrome.tabs.sendMessage(tab.id, "getDOM");
-        imgUrl = tab.url;
-        console.log("URL: " + imgUrl);
-        chrome.downloads.download({url: imgUrl}, function (id) {console.log("Downloaded ID: " + id)});
+        console.log("Injection start.");
+        console.log("Injection into: " + tab.url);
+        // TESTING CODE
+        /*chrome.tabs.executeScript(tab.id, {
+           code: 'for(i=0; i<document.images.length; i++) {(chrome.downloads).download({url: document.images[i].src, conflictAction: "uniquify"})};'},
+            function() {console.log("Injection.")}
+        );*/
+        chrome.tabs.executeScript(tab.id, {file: "dom.js"}, function() {console.log("Code injected.")});
+        console.log("Injection end.");
+        // END TESTING CODE
+        //chrome.tabs.sendMessage(tab.id, "getDOM");
+        //imgUrl = document.images[0].src;
+        //imgUrl = tab.url;
+        //console.log("URL: " + imgUrl);
+        //chrome.downloads.download({url: imgUrl}, function (id) {console.log("Downloaded ID: " + id)});
     });
     //console.log("URL OUTSIDE:" + imgUrl);
     //console.log("Saving first image from " + tab.url);
