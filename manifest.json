@@ -6,13 +6,13 @@
   "version": "1.0",
 
   "icons":{
-    "16": "16_icon.png",
-    "48": "48_icon.png",
-    "128": "128_icon.png"
+    "16": "images/16_icon.png",
+    "48": "images/48_icon.png",
+    "128": "images/128_icon.png"
   },
 
   "browser_action": {
-    "default_icon": "128_icon.png",
+    "default_icon": "images/128_icon.png",
     "default_title": "Save-All",
     "default_popup": "popup.html"
   },
