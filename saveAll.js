@@ -18,6 +18,11 @@ function saveAll() {
         chrome.tabs.sendMessage(tabs[0].id, {action: 'getImageURLs'}, function(imageURLs) {
             for(i=0; i<imageURLs.length; i++) {
                 console.log("saveAll got " + imageURLs[i]);
+                chrome.downloads.download({
+                    url: imageURLs[i],
+                    conflictAction: "uniquify",
+                    saveAs: false
+                });
             } 
         })
     });

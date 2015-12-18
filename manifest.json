@@ -2,7 +2,7 @@
   "manifest_version": 2,
 
   "name": "Save-All",
-  "description": "An extension that saves the first image on the current web page.",
+  "description": "An extension that saves all images on the current tab.",
   "version": "1.0",
 
   "icons":{
