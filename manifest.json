@@ -26,14 +26,10 @@
     "https://*/*"
   ],
 
-  "background": {
-    "scripts": ["eventPage.js"]
-  },
-
   "content_scripts":[
   {
     "matches": ["http://*/*", "https://*/*"],
-    "js": ["saveAll.js"]
+    "js": ["eventPage.js"]
   }
   ]
 
